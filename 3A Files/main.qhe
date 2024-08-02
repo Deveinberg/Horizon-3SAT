@@ -1,0 +1,199 @@
+include clauses.qhe
+# Step 1 - prepare qubits in |+>, then apply ry
+3 -> num_qs
+
+15 -> cmax
+increment i to num_qs
+    qubit -> q.[i]
+    h[q.[i]]
+next
+
+qubit -> anc
+
+# iterate cmax times
+0 -> c
+repeat
+    c + 1 -> c
+    # Clause 1
+    clause1.[1] -> t1
+    clause1.[2] -> t2
+    clause1.[3] -> t3
+    proj(t1,t2,t3)[q.[3],q.[2],q.[1],anc]
+    measure[anc] -> m_anc
+    m_anc == 0 -> test
+    if test
+        # Clause 2
+        clause2.[1] -> t1
+        clause2.[2] -> t2
+        clause2.[3] -> t3
+        proj(t1,t2,t3)[q.[3],q.[2],q.[1],anc]
+        measure[anc] -> m_anc
+        m_anc == 0 -> test
+        if test
+            # Clause 3
+            clause3.[1] -> t1
+            clause3.[2] -> t2
+            clause3.[3] -> t3
+            proj(t1,t2,t3)[q.[3],q.[1],q.[2],anc]
+            measure[anc] -> m_anc
+            m_anc == 0 -> test
+            if test
+                # Clause 4
+                clause4.[1] -> t1
+                clause4.[2] -> t2
+                clause4.[3] -> t3
+                proj(t1,t2,t3)[q.[2],q.[1],q.[3],anc]
+                measure[anc] -> m_anc
+                m_anc == 0 -> test
+                if test
+                    # Clause 5
+                    clause5.[1] -> t1
+                    clause5.[2] -> t2
+                    clause5.[3] -> t3
+                    proj(t1,t2,t3)[q.[1],q.[3],q.[2],anc]
+                    measure[anc] -> m_anc
+                    m_anc == 0 -> test
+                    if test
+                        # Clause 6
+                        clause6.[1] -> t1
+                        clause6.[2] -> t2
+                        clause6.[3] -> t3
+                        proj(t1,t2,t3)[q.[1],q.[3],q.[2],anc]
+                        measure[anc] -> m_anc
+                        m_anc == 0 -> test
+                        if test
+                            # Clause 7
+                            clause7.[1] -> t1
+                            clause7.[2] -> t2
+                            clause7.[3] -> t3
+                            proj(t1,t2,t3)[q.[2],q.[1],q.[3],anc]
+                            measure[anc] -> m_anc
+                            m_anc == 0 -> test
+                            if test
+                                # Clause 8
+                                clause8.[1] -> t1
+                                clause8.[2] -> t2
+                                clause8.[3] -> t3
+                                proj(t1,t2,t3)[q.[1],q.[3],q.[2],anc]
+                                measure[anc] -> m_anc
+                                m_anc == 0 -> test
+                                if test
+                                    # Clause 9
+                                    clause9.[1] -> t1
+                                    clause9.[2] -> t2
+                                    clause9.[3] -> t3
+                                    proj(t1,t2,t3)[q.[2],q.[1],q.[3],anc]
+                                    measure[anc] -> m_anc
+                                    m_anc == 0 -> test
+                                    if test
+                                        # Clause 10
+                                        clause10.[1] -> t1
+                                        clause10.[2] -> t2
+                                        clause10.[3] -> t3
+                                        proj(t1,t2,t3)[q.[3],q.[1],q.[2],anc]
+                                        measure[anc] -> m_anc
+                                        m_anc == 0 -> test
+                                        if test
+                                            # Clause 11
+                                            clause11.[1] -> t1
+                                            clause11.[2] -> t2
+                                            clause11.[3] -> t3
+                                            proj(t1,t2,t3)[q.[1],q.[2],q.[3],anc]
+                                            measure[anc] -> m_anc
+                                            m_anc == 0 -> test
+                                            if test
+                                                # Clause 12
+                                                clause12.[1] -> t1
+                                                clause12.[2] -> t2
+                                                clause12.[3] -> t3
+                                                proj(t1,t2,t3)[q.[3],q.[1],q.[2],anc]
+                                                measure[anc] -> m_anc
+                                                m_anc == 0 -> test
+                                                if test
+                                                    # Clause 13
+                                                    clause13.[1] -> t1
+                                                    clause13.[2] -> t2
+                                                    clause13.[3] -> t3
+                                                    proj(t1,t2,t3)[q.[1],q.[3],q.[2],anc]
+                                                    measure[anc] -> m_anc
+                                                    m_anc == 0 -> test
+                                                    1-test -> test_not
+                                                    if test_not
+                                                        gosub initialize
+                                                    end
+                                                end
+                                                1-test -> test_not
+                                                if test_not
+                                                    gosub initialize
+                                                end
+                                            end
+                                            1-test -> test_not
+                                            if test_not
+                                                gosub initialize
+                                            end
+                                        end
+                                        1-test -> test_not
+                                        if test_not
+                                            gosub initialize
+                                        end
+                                    end
+                                    1-test -> test_not
+                                    if test_not
+                                        gosub initialize
+                                    end
+                                end
+                                1-test -> test_not
+                                if test_not
+                                    gosub initialize
+                                end
+                            end
+                            1-test -> test_not
+                            if test_not
+                                gosub initialize
+                            end
+                        end
+                        1-test -> test_not
+                        if test_not
+                            gosub initialize
+                        end
+                    end
+                    1-test -> test_not
+                    if test_not
+                        gosub initialize
+                    end
+                end
+                1-test -> test_not
+                if test_not
+                    gosub initialize
+                end
+            end
+            1-test -> test_not
+            if test_not
+                gosub initialize
+            end
+        end
+        1-test -> test_not
+        if test_not
+            gosub initialize
+        end
+    end
+    1-test -> test_not
+    if test_not
+        gosub initialize
+    end
+    c < cmax -> test2 
+until test2
+
+increment i to num_qs
+    measure[q.[i]] -> m.[i]
+    m.[i] -> output 
+next
+
+sub initialize
+    increment i to num_qs
+        qubit -> q.[i]
+        h[q.[i]]
+    next
+    qubit -> anc
+    0 -> c
+endsub
