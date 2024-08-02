@@ -2,6 +2,7 @@
 ## Final Files
 ### 3A Files
 Contains all code relevant to Triple Alpha including projector matrices generation, Helium and Hydrogen files, clauses, and code to print a 3A file until hard-coding is required.
+3A-gen-3SAT generates a valid 3-SAT problem (solved by Schöning to ensure that there is only a single unique solution). 
 
 ### Problems
 Contains all valid, generated 3-SAT problems. Validity is tested according to the BZF paper, and tested 50-100 times using Schöning's algorithm to ensure that the problems have a single, unique solution. 
