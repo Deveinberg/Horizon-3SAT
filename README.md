@@ -11,3 +11,6 @@ Re-solved solutions and their assignments using Schöning's algorithm, and the B
 
 ## Other Files
 For generating plots, the outline of the Schöning algorithm, the 3-SAT generation algorithm, etc. 
+### Schöning vs Schöning Solver
+Schöning is the general file that defines the Schöning function. Schöning solver uses it to solve the 3-SAT problems.
+Unique3SAT ensures that the generate() and is_valid() functions from the threeSATgen file generate valid 3-SAT problems with single, unique solutions. 
